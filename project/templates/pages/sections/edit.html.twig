@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modification section
+{% endblock %}
+
+{% block body %}
+	<div class="container mt-4">
+		<h1>Modification de la section</h1>
+		<p>Vous pourrez relier cette section dans la rubrique Formation, de même pour la leçon.</p>
+
+		{{ include('pages/sections/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+		<a class="btn btn-secondary btn-lg" href="{{ path('app_sections_index') }}">Retour au menu</a>
+
+
+		{{ include('pages/sections/_delete_form.html.twig') }}</div>
+
+{% endblock %}

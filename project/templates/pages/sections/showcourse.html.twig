@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sections
+{% endblock %}
+
+{% block body %}
+
+<div class="container mt-4">
+	{% for formation in section.formations %}
+
+		<h1 class=" mt-4">
+
+			Formation:
+			{{ formation.title}}
+
+
+		</h1>
+
+	</h2>
+
+	<h2>Sections N°{{ section.id }}
+		:
+
+		<td>{{ section.title }}
+			{# <a class="btn btn-secondary btn mb-1  ms-4" href="{{ path('quizsection', {'id': section.id}) }}" style="max-width: 35rem;">Réaliser le Quiz de la section</a> #}
+
+
+		</td>
+
+	</td>
+</h2>
+
+
+<table class="table">
+	<tbody>
+		<tr>
+			<th>Vos Leçons</th>
+
+			{% for lesson in section.lessons %}
+
+
+				<td></td>
+			</td>
+			<td>
+				<a class="btn btn-secondary btn mb-4" href="{{ path('app_lessons_show_student', {'id': lesson.id}) }}">{{ lesson.title}}</a>
+
+
+			</td>
+		{% endfor %}
+
+
+	</tbody>
+
+
+</tr></table><a class="btn btn-secondary btn mb-1  ms-4" href="{{ path('quizsection', {'id': section.id}) }}" style="max-width: 35rem;">Réaliser le Quiz de la section</a>{% endfor %}<div class="container mt-4"><a class="btn btn-secondary btn-lg" href="{{ path('learningsection') }}">Retour à la liste</a></div></div>{% endblock %}

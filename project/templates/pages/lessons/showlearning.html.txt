@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Leçon
+{% endblock %}
+
+{% block body %}
+	<div class="container mt-4">
+		<h1>Leçon n°:
+			{{ lesson.id }}</h1>
+		<h1>A effacer?</h1>
+
+		<table class="table">
+			<tbody>
+				{# <tr>
+																																																																																	<th>Id</th>
+																																																																																	<td></td>
+																																																																																</tr> #}
+				<tr>
+					<th>Titre</th>
+					<td>{{ lesson.title }}</td>
+				</tr>
+				<tr>
+					<th>Contenu</th>
+					<td>{{ lesson.description }}</td>
+				</tr>
+				<tr>
+					<th>Auteur</th>
+					<td>{{ lesson.slug }}</td>
+				</tr>
+				<tr>
+					<th>Video</th>
+					<td>{{ lesson.video }}</td>
+				</tr>
+				<tr>
+					<th>Terminée</th>
+					<td>{{ lesson.isEnded ? 'Oui' : 'Non' }}</td>
+				</tr>
+				<tr>
+					<th>Création</th>
+					<td>{{ lesson.createdAt ? lesson.createdAt|date('d-m-Y') : '' }}</td>
+				</tr>
+				<tr>
+					<th>Modification</th>
+					<td>{{ lesson.updatedAt ? lesson.updatedAt|date('d-m-Y') : '' }}</td>
+
+				</tr>
+
+			</tbody>
+		</table>
+
+		<a class="btn btn-secondary btn-lg mb-4" href="{{ path('app_lessons_index') }}">Retour à la liste</a>
+
+
+		<a class="btn btn-secondary btn-lg mb-4" href="{{ path('app_lessons_edit', {'id': lesson.id}) }}">Modifier</a>
+
+		{% set isEnded=false %}
+		{% for terminee in lesson.getEndedLessons  %}
+
+			{% if terminee.users == app.user %}
+
+				{% set isEnded=true %}
+
+			{% endif %}
+
+		{% endfor %}
+
+
+		<a class="btn btn-secondary btn-lg mb-4" href="{{ path('app_lessons_end', {'id': lesson.id}) }}">{{ isEnded ? 'Leçon en cours' : 'Leçon terminée'}}</a>
+
+
+		{{ include('pages/lessons/_delete_form.html.twig') }}</div>
+
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Leçon terminée
+{% endblock %}
+
+{% block body %}
+	<div class="container mt-4">
+		<h1>Validation leçon terminée</h1>
+
+		{{ include('pages/ended_lessons/_form.html.twig') }}
+
+		<a class="btn btn-secondary btn-lg mt-4" href="{{ path('learningsection') }}">Retour au planning</a>
+
+	</div>
+
+{% endblock %}

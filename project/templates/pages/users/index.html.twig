@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des adhérants
+{% endblock %}
+
+{% block body %}
+	<div class="container mt-4">
+		<h1>Liste des adhérants</h1>
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Email</th>
+					<th>Roles</th>
+
+					<th>Nom</th>
+					<th>Prénom</th>
+					<th>Description</th>
+
+					<th>Pseudo</th>
+					<th>Crée</th>
+
+					<th>Validation</th>
+
+					<th>actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for user in users %}
+					<tr>
+						<td>{{ user.id }}</td>
+						<td>{{ user.email }}</td>
+						<td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+
+						<td>{{ user.lastname }}</td>
+						<td>{{ user.firstname }}</td>
+						<td>{{ user.decription }}</td>
+						{# <td>{{ user.picture }}</td> #}
+						<td>{{ user.pseudo }}</td>
+						<td>{{ user.createdAt ? user.createdAt|date('d/m/Y') : '' }}</td>
+
+
+						<td>{{ user.isVerified ? 'Oui' : 'Non' }}</td>
+						{# <td>{{ user.isValidInstructor ? 'Oui' : 'Non' }}</td> #}
+
+						<td>
+							<a href="{{ path('admin', {'id': user.id}) }}">Valider</a>
+
+							{# <a href="{{ path('app_users_edit', {'id': user.id}) }}">edit</a>
+																																		</td> #}
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="16">no records found</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		<a href="{{ path('app_users_new') }}">Create new</a>
+	</div>
+
+{% endblock %}

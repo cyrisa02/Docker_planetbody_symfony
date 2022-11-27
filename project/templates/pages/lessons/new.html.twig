@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle Leçon
+{% endblock %}
+
+{% block body %}
+	<div class="container mt-4">
+		<h1>Créer une nouvelle leçon</h1>
+
+		{{ include('pages/lessons/_form.html.twig') }}
+
+		<a href="{{ path('app_lessons_index') }}">Retour à la liste</a>
+	</div>
+
+{% endblock %}

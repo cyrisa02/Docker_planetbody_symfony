@@ -1,0 +1,114 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+	<div class="container-fluid">
+		<a class="navbar-brand" href="{{ path('home.index')}}"><img src="{{ asset('assets/images/logo.png')}}" alt="Logo" style="max-width: 2rem;"></a>
+
+
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarColor01">
+			<ul class="navbar-nav me-auto">
+				<li class="nav-item">
+					<a class="nav-link active" href="{{ path('home.index')}}">Accueil
+
+						<span class="visually-hidden">(current)</span>
+					</a>
+
+
+				</li>
+				<li class="nav-item">
+					<a class="nav-link active" href="{{ path('readme')}}">Read-me
+						<span class="visually-hidden">(current)</span>
+					</a>
+				</li>
+
+
+				{% if app.user %}
+					{% if is_granted('ROLE_STUDENT') %}
+
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Formation-Apprenant</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="{{ path ('learningsection')}}">Mon planning</a>
+
+
+								<a class="dropdown-item" href="{{ path ('app_course')}}">Liste des formations proposées
+								</a>
+
+
+								<a class="dropdown-item" href="{{ path ('app_course1')}}">Liste des sections proposées
+								</a>
+
+
+								{# <a class="dropdown-item" href="{{ path ('show_progression') }}">Leçons</a> #}
+
+							{# <div class="dropdown-divider"></div>
+																												
+																												
+																																				<a class="dropdown-item" href="{{ path ('app_quizes_index')}}">Quiz http://127.0.0.1:8000/quizstuden/1/edition</a> #}
+
+
+								{# <a class="dropdown-item" href="{{ path ('app_questions_index')}}">Questions du quiz</a> #}
+
+
+							</div>
+						</li>
+
+					{% elseif is_granted('ROLE_INSTRUCTOR')  %}
+
+
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Formation-Instructeur</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="{{ path ('app_formations_index')}}">Liste des formations</a>
+								<a class="dropdown-item" href="{{ path ('app_sections_index')}}">Sections</a>
+								<a class="dropdown-item" href="{{ path ('app_lessons_index')}}">Leçons</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="{{ path ('app_quizes_index')}}">Quiz</a>
+
+
+								<a class="dropdown-item" href="{{ path ('app_questions_index')}}">Questions du quiz</a>
+							</div>
+						</li>
+					{% endif %}
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ path ('app_course')}}">Médiathèque</a>
+
+					{% if is_granted('ROLE_ADMIN') %}
+					</li>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ path ('app_users_index')}}">Validation</a>
+				</li>
+			{% endif %}
+
+
+		</ul>
+	{% endif %}
+
+	<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+		{% if app.user %}
+			<li class="nav-item">
+				<a class="nav-link" href="{{ path ('app_users_show',{'id':app.user.id})}}">Mon compte</a>
+
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="{{ path('app_logout') }}">Me déconnecter</a>
+			</li>
+		{% else %}
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Inscription</a>
+				<div class="dropdown-menu">
+					<a class="dropdown-item" href="{{ path ('app_register2')}}">Formation Apprenant</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="{{ path ('app_register')}}">Inscription Instructeur</a>
+				</div>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="{{ path('app_login') }}">Me Connecter</a>
+			</li>
+		{% endif %}
+	</ul>
+</div></div></nav>

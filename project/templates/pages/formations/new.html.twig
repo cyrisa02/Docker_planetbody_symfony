@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle formation
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<h1>Création d'une formation</h1>
+
+		{# {{ include('pages/lessons/_form.html.twig') }} #}
+
+		{# {% for message in app.flashes('success') %}
+					<div class="alert alert-success">
+						{{ message }}
+					</div>
+				{% endfor %} #}
+
+
+		{{ include('pages/formations/_form.html.twig') }}
+
+
+		<a class="btn btn-secondary btn-lg" href="{{ path('app_formations_index') }}">Retour à la liste</a>
+	</div>
+
+
+{% endblock %}

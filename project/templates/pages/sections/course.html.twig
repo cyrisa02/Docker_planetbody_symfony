@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sections index
+{% endblock %}
+
+{% block body %}
+
+	<div class="container mt-4">
+		<h1>Liste des sections
+		</h1>
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Chapitre</th>
+					<th>Titre</th>
+
+
+					{# <th>Quiz</th>
+					
+										<th>Leçons</th>
+					
+										<th>action</th> #}
+				</tr>
+			</thead>
+			<tbody>
+				{% for section in sections %}
+					<tr>
+						<td>{{ section.id }}</td>
+						<td>
+							<a href="{{ path('app_course1_show', {'id': section.id}) }}">{{ section.title }}</a>
+
+						</td>
+
+						{# <td>{{ section.formations }}</td>
+																														<td>{{ section.quizes }}</td>
+																														<td>{{ section.lessons }}</td> #}
+
+
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="3">Pas de section trouvée</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+
+
+	{# <a href="{{ path('app_sections_new') }}">Create new</a> #}
+{% endblock %}
